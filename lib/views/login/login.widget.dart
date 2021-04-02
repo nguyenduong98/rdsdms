@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:rdsdms/services/account.services.dart';
-import 'package:rdsdms/views/tab/tab.widget.dart';
+import 'package:rdsdms/views/menu-tab/menu-tab.widget.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -20,7 +20,7 @@ class LoginState extends State<Login> {
 
   Future<String> login() async {
     token = await AccountService.login(username, password);
-    Get.to(Tabs());
+    Get.to(MenuTabs());
     return token;
   }
 
