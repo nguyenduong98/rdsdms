@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:rdsdms/views/order/children-screen/product/product.widget.dart';
 
-import 'package:rdsdms/views/order/children-screen/agency/agency.widget.dart';
-
-class Order extends StatefulWidget {
-  Order({Key key}) : super(key: key);
+class Agency extends StatefulWidget {
+  Agency({Key key}) : super(key: key);
 
   @override
-  createState() => OrderState();
+  createState() => AgencyState();
 }
 
-class OrderState extends State<Order> {
+class AgencyState extends State<Agency> {
   List<int> data = [
     1,
     2,
@@ -37,7 +35,7 @@ class OrderState extends State<Order> {
         child: Scaffold(
             appBar: AppBar(
                 centerTitle: true,
-                title: Text('Chọn khách hàng'),
+                title: Text('Đại lý duyệt đơn hàng (c1)'),
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(60.0),
                   child: Container(
@@ -71,7 +69,7 @@ class OrderState extends State<Order> {
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                    hintText: 'Tìm Khách hàng ...'),
+                                    hintText: 'Tìm đại lý ...'),
                               ),
                             ),
                           )
@@ -80,29 +78,25 @@ class OrderState extends State<Order> {
                     ),
                   ),
                 )),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                      child: ListView(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          children: buildListCustomer())),
-                ],
-              ),
+            body: Container(
+              child: ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  children: buildListAgency()),
             )));
   }
 
-  List<Widget> buildListCustomer() {
-    return data.map((item) => buildCustomer()).toList();
+  List<Widget> buildListAgency() {
+    return data.map((item) => buildAgency()).toList();
   }
 
-  Widget buildCustomer() {
+  Widget buildAgency() {
     double width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
+      margin: EdgeInsets.only(top: 4, bottom: 4),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -113,34 +107,40 @@ class OrderState extends State<Order> {
           ),
         ],
       ),
-      padding: EdgeInsets.only(
-          left: width * 0.05, right: width * 0.05, top: 20, bottom: 10),
+      padding:
+          EdgeInsets.only(left: width * 0.05, right: width * 0.05, top: 10),
       child: InkWell(
         onTap: () {
-          Get.to(Agency());
+          Get.to(Product());
         },
         child: Column(
           children: [
             Container(
                 alignment: Alignment.topLeft,
-                child: Text('CÔNG TY TNHH  LÝ PHÁT (CH THU HIỀN)',
+                margin: EdgeInsets.only(left: 10),
+                child: Text('TOA',
                     overflow: TextOverflow.ellipsis,
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700))),
             Container(
                 margin: EdgeInsets.only(top: 10, bottom: 10),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  '152 Xuân Hồng, Phường 12, Quận Tân Bình, Tp.Hồ Chí Minh',
-                  overflow: TextOverflow.ellipsis,
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Icon(
+                          FontAwesome.map_marker,
+                          size: 15,
+                          color: Colors.green,
+                        )),
+                    Expanded(
+                        flex: 9,
+                        child: Text(
+                          'Tầng 8, Phòng 8.5, Tòa nhà Etown 3, 364 Cộng Hòa, Phường 13, Tân Bình',
+                          overflow: TextOverflow.ellipsis,
+                        ))
+                  ],
                 )),
-            Container(alignment: Alignment.topLeft, child: Text('0385575500')),
-            Container(
-              child: Html(
-                data:
-                    '<p style="font-size: 120%; color: red">20% larger text</p>',
-              ),
-            )
           ],
         ),
       ),

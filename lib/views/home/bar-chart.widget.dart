@@ -1,9 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import 'package:rdsdms/views/shares/tabs.widget.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+import 'package:rdsdms/constant/home.constant.dart';
+import 'package:rdsdms/mock/chart.mock.dart';
 
 class BarChartStatistic extends StatefulWidget {
+  final bool typeStatistic;
+
+  BarChartStatistic({@required this.typeStatistic, Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => BarChartStatisticState();
 }
@@ -32,179 +39,162 @@ class BarChartStatisticState extends State<BarChartStatistic> {
         color: Colors.white,
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.only(top: height * 0.05),
+          padding: EdgeInsets.only(
+              top: height * 0.05, bottom: height * 0.02, left: 5),
           child: Column(
             children: [
-              TabsWidget(),
               Container(
-                padding: EdgeInsets.only(right: 25),
                 width: double.infinity,
                 child: BarChart(
                   BarChartData(
                     alignment: BarChartAlignment.center,
-                    maxY: 20,
+                    maxY: 9,
                     minY: 0,
-                    groupsSpace: width * 0.15,
-                    barTouchData: BarTouchData(
-                      enabled: false,
-                    ),
+                    groupsSpace:
+                        widget.typeStatistic == HomeConstant.statisticByWeek
+                            ? width * 0.06
+                            : width * 0.014,
                     titlesData: FlTitlesData(
                       show: true,
                       bottomTitles: SideTitles(
                         showTitles: true,
-                        getTextStyles: (value) =>
-                            TextStyle(color: Colors.blue[900], fontSize: 10),
-                        margin: 10,
-                        rotateAngle: 0,
+                        getTextStyles: (value) => TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: widget.typeStatistic ==
+                                    HomeConstant.statisticByWeek
+                                ? 15
+                                : 11),
                         getTitles: (double value) {
-                          switch (value.toInt()) {
-                            case 0:
-                              return 'Mon';
-                            case 1:
-                              return 'Tue';
-                            case 2:
-                              return 'Wed';
-                            case 3:
-                              return 'Thu';
-                            case 4:
-                              return 'Fri';
-                            case 5:
-                              return 'Sat';
-                            case 6:
-                              return 'Sun';
-                            default:
-                              return '';
+                          if (widget.typeStatistic ==
+                              HomeConstant.statisticByWeek) {
+                            switch (value.toInt()) {
+                              case 0:
+                                return 'MON';
+                              case 1:
+                                return 'TUE';
+                              case 2:
+                                return 'WED';
+                              case 3:
+                                return 'THU';
+                              case 4:
+                                return 'FRI';
+                              case 5:
+                                return 'SAT';
+                              case 6:
+                                return 'SUN';
+                              default:
+                                return '';
+                            }
+                          } else {
+                            switch (value.toInt()) {
+                              case 0:
+                                return 'M';
+                              case 1:
+                                return 'T';
+                              case 2:
+                                return 'W';
+                              case 3:
+                                return 'T';
+                              case 4:
+                                return 'F';
+                              case 5:
+                                return 'S';
+                              case 6:
+                                return 'S';
+                              default:
+                                return '';
+                            }
                           }
                         },
                       ),
                       leftTitles: SideTitles(
                         showTitles: true,
                         getTextStyles: (value) =>
-                            TextStyle(color: Colors.blue[900], fontSize: 10),
-                        rotateAngle: 45,
+                            TextStyle(color: Colors.grey[600], fontSize: 15),
                         getTitles: (double value) {
                           if (value == 0) {
                             return '0';
                           }
-                          return '${value.toInt()}';
+                          return '${value.toInt()} km';
                         },
-                        interval: 5,
-                        margin: 8,
-                        reservedSize: 30,
+                        reservedSize: 35,
                       ),
                     ),
                     gridData: FlGridData(
-                      checkToShowHorizontalLine: (value) => value % 5 == 0,
                       getDrawingHorizontalLine: (value) {
                         if (value == 0) {
-                          return FlLine(
-                              color: Color(0xff363753), strokeWidth: 3);
+                          return FlLine(color: Colors.white);
                         }
                         return FlLine(
-                          color: Color(0xff2a2747),
-                          strokeWidth: 0.8,
+                          color: Colors.white,
                         );
                       },
                     ),
                     borderData: FlBorderData(
-                        show: true,
-                        border: Border(
-                            bottom: BorderSide(color: Colors.grey[400]),
-                            top: BorderSide(color: Colors.grey[400]))),
-                    barGroups: [
-                      BarChartGroupData(
-                        x: 0,
-                        barRods: [
-                          BarChartRodData(
-                            y: 7.5,
-                            width: barWidth,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                topRight: Radius.circular(6)),
-                            rodStackItems: [
-                              BarChartRodStackItem(0, 2, Colors.blue[600]),
-                              BarChartRodStackItem(2, 5, Colors.orange),
-                              BarChartRodStackItem(5, 7.5, Colors.green),
-                            ],
-                          ),
-                        ],
-                      ),
-                      BarChartGroupData(
-                        x: 2,
-                        barRods: [
-                          BarChartRodData(
-                            y: 7,
-                            width: barWidth,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                topRight: Radius.circular(6)),
-                            rodStackItems: [
-                              BarChartRodStackItem(0, 1.5, Colors.blue[600]),
-                              BarChartRodStackItem(1.5, 3.5, Colors.orange),
-                              BarChartRodStackItem(3.5, 7, Colors.green),
-                            ],
-                          ),
-                        ],
-                      ),
-                      BarChartGroupData(
-                        x: 3,
-                        barRods: [
-                          BarChartRodData(
-                            y: 7,
-                            width: barWidth,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                topRight: Radius.circular(6)),
-                            rodStackItems: [
-                              BarChartRodStackItem(0, 1.5, Colors.blue[600]),
-                              BarChartRodStackItem(1.5, 3, Colors.orange),
-                              BarChartRodStackItem(3, 7, Colors.green),
-                            ],
-                          ),
-                        ],
-                      ),
-                      BarChartGroupData(
-                        x: 6,
-                        barRods: [
-                          BarChartRodData(
-                            y: 11,
-                            width: barWidth,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                topRight: Radius.circular(6)),
-                            rodStackItems: [
-                              BarChartRodStackItem(0, 1.2, Colors.blue[600]),
-                              BarChartRodStackItem(1.2, 6, Colors.orange),
-                              BarChartRodStackItem(6, 11, Colors.green),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                      show: false,
+                    ),
+                    barGroups:
+                        widget.typeStatistic == HomeConstant.statisticByWeek
+                            ? ChartMock.dataByWeek
+                                .asMap()
+                                .entries
+                                .map((item) => BarChartGroupData(
+                                      x: item.key,
+                                      barRods: [
+                                        BarChartRodData(
+                                          y: item.value.toDouble(),
+                                          width: barWidth,
+                                          colors: [
+                                            Colors.red,
+                                            Colors.purple[900],
+                                          ],
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(6),
+                                              topRight: Radius.circular(6)),
+                                        ),
+                                      ],
+                                    ))
+                                .toList()
+                            : ChartMock.dataByMonth
+                                .asMap()
+                                .entries
+                                .map((item) => BarChartGroupData(
+                                      x: item.key % 7,
+                                      barRods: [
+                                        BarChartRodData(
+                                            y: item.value.toDouble(),
+                                            width: 5,
+                                            colors: [
+                                              Colors.red,
+                                              Colors.purple[900],
+                                            ],
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(6),
+                                                topRight: Radius.circular(6)))
+                                      ],
+                                    ))
+                                .toList(),
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 15, bottom: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(width: 10, height: 10, color: Colors.blue[600]),
-                    Container(
-                      margin: EdgeInsets.only(left: 5, right: 10),
-                      child: Text('Chưa xử lý'),
-                    ),
-                    Container(width: 10, height: 10, color: Colors.orange),
-                    Container(
-                      margin: EdgeInsets.only(left: 5, right: 10),
-                      child: Text('Đang xử lý'),
-                    ),
-                    Container(width: 10, height: 10, color: Colors.green),
-                    Container(
-                      margin: EdgeInsets.only(left: 5, right: 10),
-                      child: Text('Đã giao'),
-                    ),
-                  ],
+                margin: EdgeInsets.only(left: 10, top: 20),
+                alignment: Alignment.topLeft,
+                child: Text('Chỉ tiêu bán hàng',
+                    style: TextStyle(color: Colors.blue, fontSize: 16)),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: LinearPercentIndicator(
+                  width: width * 0.94,
+                  animation: true,
+                  animationDuration: 1000,
+                  lineHeight: 40.0,
+                  percent: 0.2,
+                  center: Text("20.0%"),
+                  linearStrokeCap: LinearStrokeCap.butt,
+                  progressColor: Colors.blue,
+                  backgroundColor: Colors.grey[300],
                 ),
               )
             ],

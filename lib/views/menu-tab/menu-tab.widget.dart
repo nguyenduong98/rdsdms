@@ -1,36 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 import '../home/home.widget.dart';
 import '../delivery/delivery.widget.dart';
-import '../order/order.widget.dart';
+import '../report/report.widget.dart';
 
-class Tabs extends StatelessWidget {
+class MenuTabs extends StatelessWidget {
   final _controller = PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens() {
-    return [Home(), Delivery(), Order()];
+    return [Home(), Delivery(), Report(), Report(), Report()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
-        title: ("Trang chủ"),
-        activeColor: Colors.pink,
-        inactiveColor: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.map),
+        icon: Icon(Icons.shopping_cart),
         title: ("Đơn hàng"),
-        activeColor: Colors.pink,
+        activeColor: Colors.blue,
         inactiveColor: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.add),
-        title: ("Giao hàng"),
-        activeColor: Colors.pink,
+        icon: Icon(FontAwesome.map),
+        title: ("Lộ trình"),
+        activeColor: Colors.blue,
+        inactiveColor: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(FontAwesome.pie_chart),
+        title: ("Báo cáo"),
+        activeColor: Colors.blue,
+        inactiveColor: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Feather.gift),
+        title: ("Khuyến mãi"),
+        activeColor: Colors.blue,
+        inactiveColor: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Ionicons.md_person),
+        title: ("Thông tin"),
+        activeColor: Colors.blue,
         inactiveColor: CupertinoColors.systemGrey,
       ),
     ];
@@ -66,6 +80,6 @@ class Tabs extends StatelessWidget {
                   curve: Curves.ease,
                   duration: Duration(milliseconds: 200),
                 ),
-                navBarStyle: NavBarStyle.style13)));
+                navBarStyle: NavBarStyle.style6)));
   }
 }

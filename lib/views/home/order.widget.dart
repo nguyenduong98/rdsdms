@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:rdsdms/views/shares/tab-bar.widget.dart';
+import 'package:rdsdms/views/shares/normal-tab.widget.dart';
+
 class Order extends StatefulWidget {
-  Order({Key key}) : super(key: key);
+  final Function updateTypeStatistic;
+
+  Order({@required this.updateTypeStatistic, Key key}) : super(key: key);
 
   @override
   createState() => OrderState();
@@ -16,7 +21,7 @@ class OrderState extends State<Order> {
 
     return Container(
       width: width * 0.96,
-      height: height * 0.2,
+      height: height * 0.25,
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey,
@@ -27,62 +32,72 @@ class OrderState extends State<Order> {
       child: Column(
         children: [
           Expanded(
+              flex: 2,
+              child: Container(
+                  padding: EdgeInsets.only(right: width * 0.3, left: 20),
+                  width: width,
+                  child: TabBarWidget(
+                    updateTypeStatistic: widget.updateTypeStatistic,
+                  ))),
+          Expanded(
               flex: 3,
               child: Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(bottom: 5),
-                width: width * 0.6,
-                decoration: BoxDecoration(
-                    border:
-                        Border(bottom: BorderSide(color: Colors.blue[200]))),
-                child: Text('ĐƠN HÀNG TRONG TUẦN',
-                    style: TextStyle(color: Colors.blue, fontSize: 17)),
-              )),
+                  padding: EdgeInsets.only(left: 20),
+                  width: width,
+                  child: NormalTab())),
           Expanded(
-              flex: 7,
-              child: Row(
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('2',
-                              style: TextStyle(
-                                  color: Colors.blue[600], fontSize: 20)),
-                          Text('Tổng đơn',
-                              style: TextStyle(
-                                  color: Colors.blue[600], fontSize: 20))
-                        ],
-                      )),
-                  Expanded(
-                      flex: 4,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('2',
-                              style: TextStyle(
-                                  color: Colors.orange, fontSize: 20)),
-                          Text('Đang xử lý',
-                              style:
-                                  TextStyle(color: Colors.orange, fontSize: 20))
-                        ],
-                      )),
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('0',
-                              style:
-                                  TextStyle(color: Colors.green, fontSize: 20)),
-                          Text('Đã giao',
-                              style:
-                                  TextStyle(color: Colors.green, fontSize: 20)),
-                        ],
-                      ))
-                ],
-              ))
+              flex: 4,
+              child: Container(
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('5',
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 20)),
+                              Text('KH đã đến',
+                                  style: TextStyle(
+                                      color: Colors.orange, fontSize: 18))
+                            ],
+                          )),
+                      Expanded(
+                          flex: 3,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    left: BorderSide(color: Colors.blue),
+                                    right: BorderSide(color: Colors.blue))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('10',
+                                    style: TextStyle(
+                                        color: Colors.blue[600], fontSize: 20)),
+                                Text('kế hoạch',
+                                    style: TextStyle(
+                                        color: Colors.blue[600], fontSize: 18))
+                              ],
+                            ),
+                          )),
+                      Expanded(
+                          flex: 4,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('1',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 20)),
+                              Text('1.000.000.000đ',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 18)),
+                            ],
+                          ))
+                    ],
+                  )))
         ],
       ),
     );
