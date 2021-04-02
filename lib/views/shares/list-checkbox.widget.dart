@@ -47,19 +47,25 @@ class CheckboxWidgetState extends State<CheckboxWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Transform.scale(
-      scale: 1,
-      child: CheckboxListTile(
-        title: Text("Title text",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-        value: status,
-        onChanged: (newValue) {
-          setState(() {
-            status = newValue;
-          });
-        },
-        controlAffinity: ListTileControlAffinity.leading,
-      ),
+        child: Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Checkbox(
+            value: status,
+            onChanged: (value) {
+              setState(() {
+                status = value;
+              });
+            },
+          ),
+        ),
+        Expanded(
+            flex: 7,
+            child: Container(
+              child: Text('Title text'),
+            ))
+      ],
     ));
   }
 }

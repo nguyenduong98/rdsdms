@@ -35,7 +35,7 @@ dependencies:
   google_maps_flutter: ^1.2.0
 
   #location => Get Location
-  location: ^3.2.4
+  geolocator: ^6.2.1
 
   #flutter_cache_manager => Show Network Image
   flutter_cache_manager: ^2.1.2

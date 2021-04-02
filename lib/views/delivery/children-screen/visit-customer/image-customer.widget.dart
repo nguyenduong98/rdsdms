@@ -110,7 +110,10 @@ class ImageCustomerState extends State<ImageCustomer> {
       children: [
         buildImage('Hình cửa hàng / bảng hiệu', boardImage,
             DeliveryConstant.boardImage),
-        ListCheckbox(data: data),
+        Container(
+          width: width * 0.9,
+          child: ListCheckbox(data: data),
+        ),
         Container(
           margin: EdgeInsets.only(top: 15),
           child: Text('Ghi chú:', style: TextStyle(fontSize: 17)),
@@ -137,7 +140,7 @@ class ImageCustomerState extends State<ImageCustomer> {
       children: [
         buildImage('Hình trưng bày sản phẩm', productImage,
             DeliveryConstant.productImage),
-        ListCheckbox(data: data),
+        Container(width: width * 0.9, child: ListCheckbox(data: data)),
         Container(
           margin: EdgeInsets.only(top: 15),
           child: Text('Ghi chú:', style: TextStyle(fontSize: 17)),
@@ -164,7 +167,10 @@ class ImageCustomerState extends State<ImageCustomer> {
       children: [
         buildImage('Hình máy pha màu / khác', machineImage,
             DeliveryConstant.machineImage),
-        ListCheckbox(data: data),
+        Container(
+          width: width * 0.9,
+          child: ListCheckbox(data: data),
+        ),
         Container(
           margin: EdgeInsets.only(top: 15),
           child: Text('Ghi chú:', style: TextStyle(fontSize: 17)),

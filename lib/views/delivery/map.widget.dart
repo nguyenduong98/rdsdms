@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:geocoder/geocoder.dart';
+
 import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 import 'package:rdsdms/views/delivery/children-screen/customer/customer.widget.dart';
 
@@ -21,19 +20,13 @@ class MapWidget extends StatefulWidget {
 class MapWidgetState extends State<MapWidget> {
   bool isLoading = true;
   String address = '';
-  LocationData currentLocation;
+  Position currentLocation;
   GoogleMapController _controller;
 
   final Set<Marker> _markers = new Set();
-  var location = new Location();
 
   Future<void> _currentLocation() async {
-    try {
-      currentLocation = await location.getLocation();
-    } on PlatformException catch (e) {
-      print(e);
-      currentLocation = null;
-    }
+    currentLocation = await Geolocator.getCurrentPosition();
 
     final coordinates =
         new Coordinates(currentLocation.latitude, currentLocation.longitude);
@@ -45,15 +38,15 @@ class MapWidgetState extends State<MapWidget> {
       address = '${first.addressLine}';
     });
 
-    location.onLocationChanged.listen((LocationData currentLocation) {
-      _controller.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-          bearing: 0,
-          target: LatLng(currentLocation.latitude, currentLocation.longitude),
-          zoom: 15.0,
-        ),
-      ));
-    });
+    // location.onLocationChanged.listen((LocationData currentLocation) {
+    //   _controller.animateCamera(CameraUpdate.newCameraPosition(
+    //     CameraPosition(
+    //       bearing: 0,
+    //       target: LatLng(currentLocation.latitude, currentLocation.longitude),
+    //       zoom: 15.0,
+    //     ),
+    //   ));
+    // });
   }
 
   Set<Marker> myMarker() {
@@ -123,7 +116,7 @@ class MapWidgetState extends State<MapWidget> {
                                       Container(
                                         width: double.infinity,
                                         padding: EdgeInsets.only(
-                                            left: 20, right: 20, bottom: 10),
+                                            left: 20, right: 20, bottom: 1),
                                         child: Text(address,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(

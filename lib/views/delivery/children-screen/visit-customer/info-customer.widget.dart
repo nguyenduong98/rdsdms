@@ -39,15 +39,22 @@ class InfoCustomerState extends State<InfoCustomer> {
           Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Khách hàng: ', style: TextStyle(fontSize: 18)),
-                  Text('CỬA HÀNG THỊNH VƯỢNG',
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700))
-                ],
+              width: width,
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                        text: 'Khách hàng:', style: TextStyle(fontSize: 16)),
+                    TextSpan(
+                      text: ' CỬA HÀNG THỊNH VƯỢNG',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16),
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
               )),
           Container(
             margin: EdgeInsets.only(top: 5),

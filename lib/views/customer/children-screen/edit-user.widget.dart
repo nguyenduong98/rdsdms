@@ -79,7 +79,7 @@ class EditCustomerState extends State<EditCustomer> {
                       buildDropDown(CustomerConstant.customerGroup,
                           customerGroup, CustomerConstant.isCustomerGroup),
                       // Build Dropdown Customer Classify
-                      buildTitle('Phân loại khách hàng (XS, S, M, L, XL)', 20),
+                      buildTitle('Phân loại khách hàng', 20),
                       buildDropDown(
                           CustomerConstant.customerClassify,
                           customerClassify,

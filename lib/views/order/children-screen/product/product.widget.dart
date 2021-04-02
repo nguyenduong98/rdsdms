@@ -176,7 +176,6 @@ class ProductState extends State<Product> {
 
   Widget buildProduct() {
     double width = MediaQuery.of(context).size.width;
-    print(width);
     return InkWell(
       onTap: () {
         _showOrderProduct('TOA 7IN1');
