@@ -16,13 +16,14 @@ class HeaderState extends State<Header> {
 
     return Positioned(
         child: Container(
-      height: height * 0.1,
+      height: height < 500 ? height * 0.25 : height * 0.1,
       width: width,
       color: Colors.blue,
       child: Column(
         children: [
           Expanded(
               child: Container(
+            margin: EdgeInsets.only(bottom: 10),
             alignment: Alignment.topCenter,
             child: Text('Chào Nguyễn Thái Dương / NT000284',
                 overflow: TextOverflow.ellipsis,

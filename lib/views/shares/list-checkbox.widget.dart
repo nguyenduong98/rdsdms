@@ -46,20 +46,22 @@ class CheckboxWidgetState extends State<CheckboxWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
+        padding: EdgeInsets.only(left: width * 0.1),
         child: Transform.scale(
-      scale: 1,
-      child: CheckboxListTile(
-        title: Text("Title text",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-        value: status,
-        onChanged: (newValue) {
-          setState(() {
-            status = newValue;
-          });
-        },
-        controlAffinity: ListTileControlAffinity.leading,
-      ),
-    ));
+          scale: 1,
+          child: CheckboxListTile(
+            title: Text("Title text",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+            value: status,
+            onChanged: (newValue) {
+              setState(() {
+                status = newValue;
+              });
+            },
+            controlAffinity: ListTileControlAffinity.leading,
+          ),
+        ));
   }
 }

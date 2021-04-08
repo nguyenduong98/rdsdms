@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:rdsdms/constant/customer.constant.dart';
 import 'package:rdsdms/views/shares/list-checkbox.widget.dart';
 
@@ -180,33 +183,34 @@ class EditCustomerState extends State<EditCustomer> {
                       )),
                       // Build Button Submit
                       Container(
-                          height: 50,
+                          width: width * 0.9,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.blue),
                           margin: EdgeInsets.only(top: 20, bottom: 20),
-                          child: RaisedButton(
-                            onPressed: () {},
-                            color: Colors.blue,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0)),
+                          height: 45,
+                          child: InkWell(
+                            onTap: () {
+                              print('lưu khách hàng');
+                            },
                             child: Row(
                               children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      height: 35,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      child: Icon(Icons.check),
-                                    )),
+                                Container(
+                                    margin: EdgeInsets.only(left: 5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                    height: 35,
+                                    width: 35,
+                                    child: Icon(AntDesign.check)),
                                 Expanded(
                                   flex: 9,
                                   child: Container(
                                     alignment: Alignment.center,
                                     child: Text('Lưu khách hàng',
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 16)),
+                                            color: Colors.white, fontSize: 20)),
                                   ),
                                 )
                               ],

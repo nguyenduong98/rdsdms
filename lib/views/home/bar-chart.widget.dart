@@ -186,7 +186,6 @@ class BarChartStatisticState extends State<BarChartStatistic> {
               Container(
                 margin: EdgeInsets.only(top: 10),
                 child: LinearPercentIndicator(
-                  width: width * 0.94,
                   animation: true,
                   animationDuration: 1000,
                   lineHeight: 40.0,

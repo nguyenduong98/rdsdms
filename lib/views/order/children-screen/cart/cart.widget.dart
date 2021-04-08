@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:rdsdms/views/order/children-screen/cart/products.widget.dart';
 import 'package:rdsdms/views/order/children-screen/cart/tutorial.widget.dart';
+import 'package:rdsdms/views/order/children-screen/cart/form.widget.dart';
 
 class Cart extends StatefulWidget {
   Cart({Key key}) : super(key: key);
@@ -24,7 +25,11 @@ class CartState extends State<Cart> {
             ),
             body: SingleChildScrollView(
               child: Column(
-                children: [Tutorial(), Products(listProduct: listProduct)],
+                children: [
+                  Tutorial(),
+                  Products(listProduct: listProduct),
+                  FormWidget()
+                ],
               ),
             )));
   }

@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+
+import 'package:get/get.dart';
+
+import 'package:rdsdms/views/order/children-screen/agency/agency.widget.dart';
 
 class InfoCustomer extends StatefulWidget {
   final bool statusCheckout;
@@ -22,7 +27,7 @@ class InfoCustomerState extends State<InfoCustomer> {
   }
 
   _goOnOrder() {
-    print('Tiếp tuc đặt hàng');
+    Get.to(Agency());
   }
 
   @override
@@ -40,13 +45,27 @@ class InfoCustomerState extends State<InfoCustomer> {
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Khách hàng: ', style: TextStyle(fontSize: 18)),
-                  Text('CỬA HÀNG THỊNH VƯỢNG',
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700))
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      alignment: Alignment.center,
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Khách hàng: ',
+                                style: TextStyle(fontSize: 18)),
+                            TextSpan(
+                              text: 'CỬA HÀNG THỊNH VƯỢNG',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               )),
           Container(
@@ -94,30 +113,39 @@ class InfoCustomerState extends State<InfoCustomer> {
           ),
           widget.statusCheckIn == false
               ? Container(
-                  margin: EdgeInsets.only(top: 30),
-                  child: RaisedButton.icon(
-                      color: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          side: BorderSide(color: Colors.grey)),
-                      onPressed: () {
-                        widget.checkIn();
-                      },
-                      icon: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.white,
-                        ),
-                        height: 30,
-                        width: 30,
-                        margin: EdgeInsets.all(5),
-                        child: Icon(Icons.check, color: Colors.blue),
-                      ),
-                      label: Text('Check in',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: width < 600 ? 14 : 18))),
-                )
+                  width: width * 0.4,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.blue),
+                  margin: EdgeInsets.only(left: width * 0.05, top: 20),
+                  height: 45,
+                  child: InkWell(
+                    onTap: () {
+                      widget.checkIn();
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(left: 5),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(100)),
+                            height: 35,
+                            width: 35,
+                            child: Icon(AntDesign.check)),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Text('Check in ',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: width < 350 ? 15 : 20)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ))
               : Container(),
           widget.statusCheckIn == true
               ? Column(
@@ -148,53 +176,77 @@ class InfoCustomerState extends State<InfoCustomer> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton.icon(
-                      color: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          side: BorderSide(color: Colors.grey)),
-                      onPressed: widget.statusCheckout == false
-                          ? null
-                          : () => _checkout(),
-                      icon: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.white,
-                        ),
-                        height: 30,
-                        width: 30,
-                        margin: EdgeInsets.all(5),
-                        child: Icon(Icons.check, color: Colors.blue),
-                      ),
-                      label: Text('Check out',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: width < 600 ? 14 : 18))),
                   Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: RaisedButton.icon(
-                        color: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            side: BorderSide(color: Colors.grey)),
-                        onPressed: () {
-                          _goOnOrder();
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white,
-                          ),
-                          height: 30,
-                          width: 30,
-                          margin: EdgeInsets.all(5),
-                          child: Icon(Icons.shopping_bag, color: Colors.blue),
+                      width: width * 0.4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: widget.statusCheckout == false
+                              ? Colors.grey
+                              : Colors.blue),
+                      height: 45,
+                      child: InkWell(
+                        onTap: widget.statusCheckout == false
+                            ? null
+                            : () => _checkout(),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
+                                height: 35,
+                                width: 35,
+                                child: Icon(AntDesign.check)),
+                            Expanded(
+                              flex: 9,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text('Check out',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: width < 350 ? 15 : 20)),
+                              ),
+                            )
+                          ],
                         ),
-                        label: Text('Tiếp tục đặt hàng',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: width < 600 ? 14 : 18))),
-                  )
+                      )),
+                  Container(
+                      width: width * 0.51,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: widget.statusCheckout == false
+                              ? Colors.grey
+                              : Colors.blue),
+                      margin: EdgeInsets.only(left: 5),
+                      height: 45,
+                      child: InkWell(
+                        onTap: widget.statusCheckout == false
+                            ? null
+                            : () => _goOnOrder(),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.only(left: 5),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
+                                height: 35,
+                                width: 35,
+                                child: Icon(AntDesign.check)),
+                            Expanded(
+                              flex: 9,
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Text('Tiếp tục đặt hàng',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: width < 350 ? 15 : 18)),
+                              ),
+                            )
+                          ],
+                        ),
+                      ))
                 ],
               ))
         ],

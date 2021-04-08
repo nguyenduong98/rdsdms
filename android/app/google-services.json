@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "754465626605",
+    "project_id": "rdsdms-26276",
+    "storage_bucket": "rdsdms-26276.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754465626605:android:cfe4acf22628fd252cefe4",
+        "android_client_info": {
+          "package_name": "com.example.rdsdms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754465626605-crkut1l40h81daqvicgk8s16p3431mvi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxTcu-JNHfbfWgad-wefKgWQOiB34eqsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754465626605-crkut1l40h81daqvicgk8s16p3431mvi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:rdsdms/views/report/children-screen/order-list/order-list.widget.dart';
+import 'package:rdsdms/views/report/children-screen/order-report/order-report.widget.dart';
+import 'package:rdsdms/views/report/children-screen/route-report/route-report.widget.dart';
+import 'package:rdsdms/views/report/children-screen/sales-report/sales-report.widget.dart';
+import 'package:rdsdms/views/report/children-screen/sales-targets/sales-targets.widget.dart';
+import 'package:rdsdms/views/report/children-screen/cancel-order-list/cancel-order-list.widget.dart';
+import 'package:rdsdms/views/report/children-screen/contruction-report/contruction-report.widget.dart';
 
 class Report extends StatefulWidget {
   Report({Key key}) : super(key: key);
@@ -79,7 +85,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(CancelOrderList());
                         },
                         child: Row(
                           children: [
@@ -116,7 +122,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(SalesTargets());
                         },
                         child: Row(
                           children: [
@@ -153,7 +159,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(SalesReport());
                         },
                         child: Row(
                           children: [
@@ -190,7 +196,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(OrderReport());
                         },
                         child: Row(
                           children: [
@@ -227,7 +233,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(RouteReport());
                         },
                         child: Row(
                           children: [
@@ -264,7 +270,7 @@ class ReportState extends State<Report> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Get.to(OrderList());
+                          Get.to(ContructionReport());
                         },
                         child: Row(
                           children: [
