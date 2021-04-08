@@ -176,7 +176,6 @@ class ProductState extends State<Product> {
 
   Widget buildProduct() {
     double width = MediaQuery.of(context).size.width;
-    print(width);
     return InkWell(
       onTap: () {
         _showOrderProduct('TOA 7IN1');
@@ -218,7 +217,13 @@ class ProductState extends State<Product> {
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.red,
                     ),
-                    padding: EdgeInsets.all(width < 400 ? 0 : 3),
+                    padding: EdgeInsets.all(width < 350
+                        ? 0
+                        : width < 400
+                            ? 1
+                            : width < 500
+                                ? 2
+                                : 3),
                     child: Text('10', style: TextStyle(color: Colors.white)),
                   ),
                   Icon(
@@ -274,48 +279,53 @@ class ProductState extends State<Product> {
                             ),
                           ),
                         ),
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                                margin: EdgeInsets.only(bottom: 10),
-                                width: width,
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(0.0, 0.0),
-                                        blurRadius: 6.0,
-                                      ),
-                                    ],
-                                    color: Colors.white,
-                                    border: Border.all(color: Colors.grey)),
+                        height < 450
+                            ? Container()
+                            : Expanded(
+                                flex: 1,
                                 child: Container(
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                              padding: EdgeInsets.only(
-                                                  top: 5, left: 10),
-                                              child: Icon(Icons.search))),
-                                      Expanded(
-                                        flex: 9,
-                                        child: Container(
-                                          padding: EdgeInsets.only(top: 15),
-                                          child: TextField(
-                                            decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                  borderSide: BorderSide.none,
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                hintText: 'Tìm Khách hàng ...'),
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(0.0, 0.0),
+                                            blurRadius: 6.0,
                                           ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ))),
+                                        ],
+                                        color: Colors.white,
+                                        border: Border.all(color: Colors.grey)),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                              flex: 1,
+                                              child: Container(
+                                                  padding: EdgeInsets.only(
+                                                      top: 5, left: 10),
+                                                  child: Icon(Icons.search))),
+                                          Expanded(
+                                            flex: 9,
+                                            child: Container(
+                                              padding: EdgeInsets.only(top: 15),
+                                              child: TextField(
+                                                decoration: InputDecoration(
+                                                    border: OutlineInputBorder(
+                                                      borderSide:
+                                                          BorderSide.none,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    hintText:
+                                                        'Tìm Khách hàng ...'),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ))),
                         Expanded(
                           flex: 7,
                           child: Container(
@@ -329,8 +339,7 @@ class ProductState extends State<Product> {
                         Expanded(
                             flex: 1,
                             child: Container(
-                                padding: EdgeInsets.only(bottom: 15),
-                                height: 50,
+                                padding: EdgeInsets.only(bottom: 5),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -360,7 +369,9 @@ class ProductState extends State<Product> {
                                                 ),
                                                 label: Text('Thêm vào giỏ',
                                                     style: TextStyle(
-                                                        fontSize: 16,
+                                                        fontSize: width < 350
+                                                            ? 13
+                                                            : 16,
                                                         color:
                                                             Colors.white))))),
                                     Expanded(
@@ -381,7 +392,8 @@ class ProductState extends State<Product> {
                                               icon: Icon(Icons.cancel),
                                               label: Text('Đóng',
                                                   style: TextStyle(
-                                                    fontSize: 16,
+                                                    fontSize:
+                                                        width < 350 ? 13 : 16,
                                                   ))),
                                         ))
                                   ],

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:rdsdms/services/account.services.dart';
 import 'package:rdsdms/views/menu-tab/menu-tab.widget.dart';
@@ -20,6 +21,9 @@ class LoginState extends State<Login> {
 
   Future<String> login() async {
     token = await AccountService.login(username, password);
+    FirebaseFirestore.instance
+        .collection('User')
+        .add({'UserName': 'Dương', 'Password': '111111'});
     Get.to(MenuTabs());
     return token;
   }

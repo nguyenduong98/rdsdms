@@ -38,7 +38,6 @@ class VisitCustomerState extends State<VisitCustomer>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
-      print(statusCheckIn);
       if (_tabController.index == 0) {
         setState(() {
           currentTab = DeliveryConstant.customerTab;
@@ -57,6 +56,7 @@ class VisitCustomerState extends State<VisitCustomer>
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -79,18 +79,21 @@ class VisitCustomerState extends State<VisitCustomer>
                       tabs: [
                         Tab(
                           child: Text('Khách hàng',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 350 ? 13 : 16)),
                         ),
                         Tab(
                           child: Text('Hình ảnh',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 350 ? 13 : 16)),
                         ),
                         Tab(
                           child: Text('Đánh giá',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 350 ? 13 : 16)),
                         )
                       ],
                     ),

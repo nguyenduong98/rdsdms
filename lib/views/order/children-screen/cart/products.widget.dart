@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:rdsdms/views/order/children-screen/cart/discount.widget.dart';
 
 class Products extends StatefulWidget {
   final List<int> listProduct;
@@ -24,8 +24,8 @@ class ProductsState extends State<Products> {
               padding: EdgeInsets.zero,
               children: buildlistProduct()),
           buildSumMoney(),
+          Discount(),
           buildInfoOfCustomer(),
-          buildForm()
         ]));
   }
 
@@ -154,6 +154,7 @@ class ProductsState extends State<Products> {
 
   Widget buildInfoOfCustomer() {
     return Container(
+      width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(left: 20, right: 10, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,172 +170,6 @@ class ProductsState extends State<Products> {
               margin: EdgeInsets.only(top: 5),
               child: Text('TOA - 100001',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
-        ],
-      ),
-    );
-  }
-
-  Widget buildForm() {
-    double width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: 20, top: 20),
-            alignment: Alignment.topLeft,
-            child: Text('Giao hàng tại:', style: TextStyle(fontSize: 16)),
-          ),
-          Container(
-            padding: EdgeInsets.only(bottom: 5),
-            margin: EdgeInsets.only(left: 20, top: 5),
-            height: 45,
-            width: width - 40,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(5)),
-            child: TextField(
-              textAlignVertical: TextAlignVertical.center,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              style: TextStyle(height: 1, color: Colors.black, fontSize: 25),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 20, top: 20),
-            alignment: Alignment.topLeft,
-            child: Text('Ghi chú:', style: TextStyle(fontSize: 16)),
-          ),
-          Container(
-            padding: EdgeInsets.only(bottom: 5),
-            margin: EdgeInsets.only(left: 20, top: 5),
-            height: 45,
-            width: width - 40,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(5)),
-            child: TextField(
-              textAlignVertical: TextAlignVertical.center,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              style: TextStyle(height: 1, color: Colors.black, fontSize: 25),
-            ),
-          ),
-          Container(
-              width: width * 0.9,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100), color: Colors.blue),
-              margin: EdgeInsets.only(left: width * 0.05, top: 40),
-              height: 50,
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                          margin: EdgeInsets.only(left: 3),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(100)),
-                          height: 30,
-                          width: 30,
-                          child: Icon(AntDesign.back)),
-                    ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Chọn tiếp',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                      ),
-                    )
-                  ],
-                ),
-              )),
-          Container(
-              width: width * 0.9,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100), color: Colors.blue),
-              margin: EdgeInsets.only(left: width * 0.05, top: 10),
-              height: 50,
-              child: InkWell(
-                onTap: () {
-                  print('Cập nhật đơn hàng');
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                          margin: EdgeInsets.only(left: 3),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(100)),
-                          height: 30,
-                          width: 30,
-                          child: Icon(AntDesign.reload1)),
-                    ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Cập nhật đơn hàng',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                      ),
-                    )
-                  ],
-                ),
-              )),
-          Container(
-              width: width * 0.9,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100), color: Colors.blue),
-              margin: EdgeInsets.only(left: width * 0.05, top: 10, bottom: 20),
-              height: 50,
-              child: InkWell(
-                onTap: () {
-                  print('Đặt hàng');
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                          margin: EdgeInsets.only(left: 3),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(100)),
-                          height: 30,
-                          width: 30,
-                          child: Icon(AntDesign.check)),
-                    ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text('Đặt hàng',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                      ),
-                    )
-                  ],
-                ),
-              ))
         ],
       ),
     );

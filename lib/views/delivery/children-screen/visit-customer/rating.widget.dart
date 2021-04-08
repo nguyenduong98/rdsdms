@@ -35,7 +35,7 @@ class RatingState extends State<Rating> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey,
+                  color: width < 700 ? Colors.grey : Colors.white,
                   offset: Offset(0.0, 0.0),
                   blurRadius: 6.0,
                 ),
@@ -48,13 +48,13 @@ class RatingState extends State<Rating> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 6.0,
-                          ),
-                        ],
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.grey,
+                        //     offset: Offset(0.0, 0.0),
+                        //     blurRadius: 6.0,
+                        //   ),
+                        // ],
                       ),
                       margin: EdgeInsets.only(left: 20),
                       width: 100,

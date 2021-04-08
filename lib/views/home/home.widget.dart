@@ -8,6 +8,7 @@ import 'package:rdsdms/views/home/statistics.widget.dart';
 import 'package:rdsdms/views/order/order.widget.dart';
 import 'package:rdsdms/views/report/report.widget.dart';
 import 'package:rdsdms/views/customer/customer.widget.dart';
+import 'package:rdsdms/views/notification/notification.widget.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -58,7 +59,7 @@ class HomeState extends State<Home> {
                   size: 30,
                 ),
                 onPressed: () {
-                  print('Notification');
+                  Get.to(NotificationWidget());
                 },
               ))
             ],

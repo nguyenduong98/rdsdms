@@ -29,6 +29,7 @@ class OrderListState extends State<OrderList> {
   List<String> listBeFound = [];
   List<String> listKeyToFilter = [];
   bool reRender = false;
+  bool _visible = true;
   String valueTextField = '';
   DateTime nowDate = DateTime.now();
   DateTime selectedEndDate = DateTime.now();
@@ -71,22 +72,42 @@ class OrderListState extends State<OrderList> {
                     },
                   )
                 ]),
-            body: SingleChildScrollView(
+            body: GestureDetector(
+              onHorizontalDragStart: (value) {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          insetPadding: EdgeInsets.only(left: 10, right: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0))),
+                          content: Builder(
+                            builder: (context) {
+                              return DialogWidget();
+                            },
+                          ),
+                        ));
+              },
               child: Container(
-                color: Colors.grey[300],
-                child: Column(
-                  children: [
-                    buildGeneralInfo(),
-                    Container(
-                      margin: EdgeInsets.only(top: 20, bottom: 10),
-                      child: ListView(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          children: buildListOrder()),
-                    )
-                  ],
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  child: Container(
+                    color: Colors.grey[300],
+                    child: Column(
+                      children: [
+                        buildGeneralInfo(),
+                        Container(
+                          margin: EdgeInsets.only(top: 20, bottom: 10),
+                          child: ListView(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              physics: const ClampingScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              children: buildListOrder()),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             )));
@@ -122,8 +143,8 @@ class OrderListState extends State<OrderList> {
                     color: Colors.white,
                   ),
                   padding: EdgeInsets.only(top: 10, bottom: 10),
-                  margin: EdgeInsets.only(
-                      left: width * 0.1, right: width * 0.02, top: 10),
+                  margin:
+                      EdgeInsets.only(left: width * 0.05, right: 10, top: 10),
                   alignment: Alignment.center,
                   child: Text.rich(
                     TextSpan(
@@ -148,8 +169,7 @@ class OrderListState extends State<OrderList> {
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.white,
                   ),
-                  margin: EdgeInsets.only(
-                      left: width * 0.02, right: width * 0.1, top: 10),
+                  margin: EdgeInsets.only(right: width * 0.05, top: 10),
                   alignment: Alignment.center,
                   child: Text.rich(
                     TextSpan(
@@ -246,7 +266,7 @@ class OrderListState extends State<OrderList> {
                   Expanded(
                       child: Text('2113039845197',
                           style: TextStyle(
-                              color: Colors.blue[900], fontSize: 18))),
+                              color: Colors.blue[900], fontSize: 17))),
                   Expanded(
                       child: Container(
                     alignment: Alignment.centerRight,
@@ -290,7 +310,7 @@ class OrderListState extends State<OrderList> {
                           print('delete');
                         },
                         icon: Container(
-                          margin: EdgeInsets.only(left: 25),
+                          margin: EdgeInsets.only(left: width < 350 ? 15 : 25),
                           padding: EdgeInsets.all(width < 600 ? 0 : 5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),

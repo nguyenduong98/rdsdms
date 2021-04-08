@@ -18,10 +18,19 @@ class OrderState extends State<Order> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
+    print(height);
     return Container(
       width: width * 0.96,
-      height: height * 0.25,
+      height: height < 350
+          ? height * 0.5
+          : height < 500
+              ? height * 0.4
+              : height < 550
+                  ? height * 0.36
+                  : height < 600
+                      ? height * 0.25
+                      : height * 0.2,
+      margin: EdgeInsets.only(top: height < 500 ? 20 : 0),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey,
@@ -34,7 +43,8 @@ class OrderState extends State<Order> {
           Expanded(
               flex: 2,
               child: Container(
-                  padding: EdgeInsets.only(right: width * 0.3, left: 20),
+                  padding: EdgeInsets.only(
+                      right: width < 350 ? 20 : width * 0.3, left: 20),
                   width: width,
                   child: TabBarWidget(
                     updateTypeStatistic: widget.updateTypeStatistic,
